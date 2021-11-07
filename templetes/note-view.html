@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container px-4">
+    {% for item in items %}
+    <div class="custom-bg-primary custom-text-light rounded p-3 my-2 row">
+        <a href="{% url 'view' id=item.id %}" class="text-white">
+            <h2>{{item.id}}</h2>
+            
+            <h1>{{ item.title }}</h1>
+            <p class="note-view-note">{{ item.note }}</p>
+        </a>
+        <div class="d-flex">
+            <a href="{% url 'edit' id=item.id %}"
+                class="btn custom-bg-light py-2 px-4 custom-fw-600 me-3 custom-fs-14">Edit</a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn custom-bg-light py-3 px-5 custom-fw-600" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Delete
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade custom-text-black" id="exampleModal" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog  modal-dialog-centered">
+                    <div class="modal-content custom-bg-light">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                Delete {{ item.title }}
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body custom-fs-20 custom-fw-600">
+                            Are you sure?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn custom-bg-primary text-white"
+                                data-bs-dismiss="modal">Close</button>
+                            <a href="{% url 'delete' id=item.id %}" class="btn custom-bg-primary text-white"> Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock content %}

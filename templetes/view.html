@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container ">
+    <div class="custom-bg-primary rounded text-center text-white p-4 ">
+        <h1 class="custom-text-light ">{{item.title}}</h1>
+        <p>{{item.note}}</p>
+
+        <a href="{% url 'edit' id=item.id %}" class="btn custom-bg-light py-3 px-5 custom-fw-600 m-3"> Edit</a>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn custom-bg-light py-3 px-5 custom-fw-600" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Delete
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade text-black" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content custom-bg-light">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Delete {{ item.title }}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body custom-fs-20 custom-fw-600">
+                        Are you sure?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn custom-bg-primary text-white"
+                            data-bs-dismiss="modal">Close</button>
+                        <a href="{% url 'delete' id=item.id %}" class="btn custom-bg-primary text-white"> Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

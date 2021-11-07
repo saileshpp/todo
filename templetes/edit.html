@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="custom-bg-primary rounded p-4">
+        <h1 class="custom-text-light text-center">Edit</h1>
+        <form method="post" class="my-5">
+            {% csrf_token %}
+            <div class="row justify-content-center align-items-center flex-column">
+                <div class="col-md-6 my-2">
+                    <input type="text" id="name" class="form-control" name='title' value='{{ todo.title }}' required
+                        placeholder="Title">
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="form-floating">
+                        <textarea class="form-control" name='note' placeholder="Leave a comment here"
+                            id="floatingTextarea2" style="height: 150px">{{todo.note}}</textarea>
+                        <label for="floatingTextarea2">Write a note...</label>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2 d-flex justify-content-around flex-column flex-sm-row">
+                    <button class="btn custom-bg-light py-3 px-5 custom-fw-600 m-3">Submit</button>
+                    <a href="{% url 'home' %}" class="btn custom-bg-light py-3 px-5 custom-fw-600 m-3"> Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
